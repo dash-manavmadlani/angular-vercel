@@ -1,0 +1,67 @@
+<nav class="bg-white shadow-lg sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16">
+      <div class="flex items-center">
+        <div class="flex-shrink-0">
+          <h1 class="text-2xl font-bold text-blue-600">ShopEasy</h1>
+        </div>
+      </div>
+      
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center space-x-8">
+        <a routerLink="/" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</a>
+        <a routerLink="/products" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Products</a>
+        <a routerLink="/about" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">About</a>
+        <a routerLink="/contact" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Contact</a>
+        <button class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors cursor-pointer">
+          Cart (0)
+        </button>
+        
+        <!-- Show Login button when logged out, Profile menu when logged in -->
+        <div *ngIf="!(authService.isLoggedIn$ | async)" class="ml-4">
+          <a routerLink="/login" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-300 transition-colors cursor-pointer">
+            Login
+          </a>
+        </div>
+        <div *ngIf="authService.isLoggedIn$ | async" class="ml-4">
+          <app-profile-menu></app-profile-menu>
+        </div>
+      </div>
+
+      <!-- Mobile menu button -->
+      <div class="md:hidden flex items-center">
+        <button (click)="toggleMenu()" class="text-gray-700 hover:text-blue-600 focus:outline-none">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div class="md:hidden" [class.hidden]="!isMenuOpen">
+      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
+        <a routerLink="/" class="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium">Home</a>
+        <a routerLink="/products" class="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium">Products</a>
+        <a routerLink="/about" class="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium">About</a>
+        <a routerLink="/contact" class="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+        <button class="w-full text-left bg-blue-600 text-white px-3 py-2 rounded-md hover:bg-blue-700 transition-colors">
+          Cart (0)
+        </button>
+        
+        <!-- Mobile Login/Profile -->
+        <div *ngIf="!(authService.isLoggedIn$ | async)">
+          <a routerLink="/login" class="w-full text-left bg-gray-200 text-gray-700 px-3 py-2 rounded-md hover:bg-gray-300 transition-colors">
+            Login
+          </a>
+        </div>
+        <div *ngIf="authService.isLoggedIn$ | async">
+          <a routerLink="/profile" class="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium">My Profile</a>
+          <button (click)="authService.logout()" class="w-full text-left text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-base font-medium">
+            Log out
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
