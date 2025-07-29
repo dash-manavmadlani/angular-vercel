@@ -65,12 +65,6 @@ import { AuthService } from '../../services/auth.service';
               </a>
             </p>
           </div>
-
-          <div class="mt-6 p-4 bg-blue-50 rounded-md">
-            <p class="text-sm text-blue-700 font-medium">Demo Credentials:</p>
-            <p class="text-sm text-blue-600">Email: user&#64;shopeasy.com</p>
-            <p class="text-sm text-blue-600">Password: password123</p>
-          </div>
         </form>
       </div>
     </section>
